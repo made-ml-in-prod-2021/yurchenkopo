@@ -1,0 +1,7 @@
+input_data_path: data/raw/train.csv
+output_model_path: models/model.pkl
+metric_path: models/metrics.json
+defaults:
+  - splitting_params: splitting_config
+  - train_params: train_config_random_forest
+  - feature_params: feature_config
