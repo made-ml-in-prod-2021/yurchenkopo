@@ -94,3 +94,4 @@ target/
 # models
 /models/metrics.json
 /models/model.pkl
+/reports/predictions.json
