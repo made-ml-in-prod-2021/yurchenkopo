@@ -20,13 +20,14 @@ col_dict = {
         'target': (0, 1)
     }
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def dataset_size():
     return 1000
 
-@pytest.fixture()
-def dataset_path(tmpdir, dataset_size):
-    dataset = tmpdir.join('generated_train_data.csv')
+
+@pytest.fixture(scope='session')
+def dataset_path_session(tmp_path_factory, dataset_size):
+    dataset = tmp_path_factory.getbasetemp() / 'generated_train_data.csv'
     data = np.zeros((len(col_dict), dataset_size))
     for i, (col, (min_val, max_val)) in enumerate(col_dict.items()):
         if isinstance(max_val, float):
@@ -38,21 +39,26 @@ def dataset_path(tmpdir, dataset_size):
     return dataset
 
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
+def dataset_path(dataset_path_session):
+    return dataset_path_session
+
+
+@pytest.fixture(scope='session')
 def target_col():
     return 'target'
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def categorical_features() -> List[str]:
     return ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'thal']
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def numerical_features() -> List[str]:
     return ['age', 'chol', 'ca', 'trestbps', 'thalach', 'oldpeak']
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def features_to_drop() -> List[str]:
     return None

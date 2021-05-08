@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def train_pipeline(predict_pipeline_params: DictConfig):
+def predict_pipeline(predict_pipeline_params: DictConfig):
     logger.info(f'start predict pipeline with {predict_pipeline_params}\n')
     logger.info(f'read data from {os.path.join(CUR_DIR, predict_pipeline_params.input_data_path)}')
     df = read_data(os.path.join(CUR_DIR, predict_pipeline_params.input_data_path))
@@ -56,7 +56,7 @@ def train_pipeline(predict_pipeline_params: DictConfig):
 def predict_pipeline_command(cfg: DictConfig):
     param_schema = PredictPipelineParamsSchema()
     params = param_schema.load(cfg)
-    train_pipeline(params)
+    predict_pipeline(params)
 
 
 if __name__ == '__main__':
