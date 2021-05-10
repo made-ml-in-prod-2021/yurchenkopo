@@ -1,0 +1,17 @@
+categorical_features:
+  - sex
+  - cp
+  - fbs
+  - restecg
+  - exang
+  - slope
+  - thal
+numerical_features:
+  - age
+  - ca
+  - chol
+  - oldpeak
+  - thalach
+  - trestbps
+features_to_drop: null
+target_col: target
