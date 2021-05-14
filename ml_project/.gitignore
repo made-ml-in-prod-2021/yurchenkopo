@@ -94,7 +94,8 @@ target/
 # models
 /models/metrics.json
 /models/model.pkl
+/models/transformer.pkl
 /reports/predictions.json
 
 # venv
-/.venv
+.venv/

@@ -15,6 +15,7 @@ from src.models import (
     serialize_model,
     predict_model,
     evaluate_model,
+    serialize_transformer,
 )
 from marshmallow_dataclass import class_schema
 from src.enities.train_pipeline_params import TrainingPipelineParams
@@ -36,19 +37,20 @@ def train_pipeline(training_pipeline_params: DictConfig):
     df = drop_features(df, training_pipeline_params.feature_params.features_to_drop)
     train_df, val_df = split_train_val_data(df, training_pipeline_params.splitting_params)
 
+    target_col = training_pipeline_params.feature_params.target_col
+    y_train = train_df.pop(target_col)
+    y_val = val_df.pop(target_col)
+
     transformer = build_transformer(training_pipeline_params.feature_params)
     transformer.fit(train_df)
+    path_to_transformer = serialize_transformer(transformer,
+                                                os.path.join(CUR_DIR, training_pipeline_params.output_transformer_path))
 
-    target_col = training_pipeline_params.feature_params.target_col
-    y_train = train_df[target_col]
-    y_val = val_df[target_col]
     train_features = transformer.transform(train_df)
     val_features = transformer.transform(val_df)
     logger.info(f'train_features shape = {train_features.shape}, val_features shape = {val_features.shape}')
 
-
     model = train_model(train_features, y_train, training_pipeline_params.train_params, logger)
-
 
     logger.info(f'save model to {os.path.join(CUR_DIR, training_pipeline_params.output_model_path)}')
     path_to_model = serialize_model(model, os.path.join(CUR_DIR, training_pipeline_params.output_model_path))
@@ -61,7 +63,7 @@ def train_pipeline(training_pipeline_params: DictConfig):
     logger.info(f'metrics: { {k:round(v, 3) for k, v in metrics.items()} }')
     logger.info('training successfully finished')
 
-    return path_to_model, metrics
+    return path_to_model, path_to_transformer, metrics
 
 
 @hydra.main(config_path='../configs', config_name='train_config')

@@ -1,5 +1,6 @@
 input_data_path: data/raw/train.csv
 output_model_path: models/model.pkl
+output_transformer_path: models/transformer.pkl
 metric_path: models/metrics.json
 defaults:
   - splitting_params: splitting_config

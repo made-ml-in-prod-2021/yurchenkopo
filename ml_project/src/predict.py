@@ -8,10 +8,7 @@ from omegaconf import DictConfig
 import hydra
 
 from src.data import read_data
-from src.features import (
-    drop_features,
-    build_transformer,
-)
+from src.features import drop_features
 from src.models import predict_model
 from marshmallow_dataclass import class_schema
 from src.enities.predict_pipeline_params import PredictPipelineParams
@@ -28,19 +25,18 @@ def predict_pipeline(predict_pipeline_params: DictConfig):
     logger.info(f'start predict pipeline with {predict_pipeline_params}\n')
     logger.info(f'read data from {os.path.join(CUR_DIR, predict_pipeline_params.input_data_path)}')
     df = read_data(os.path.join(CUR_DIR, predict_pipeline_params.input_data_path))
-    train_df = read_data(os.path.join(CUR_DIR, predict_pipeline_params.train_data_path))
 
     df = drop_features(df, predict_pipeline_params.feature_params.features_to_drop)
-    train_df = drop_features(train_df, predict_pipeline_params.feature_params.features_to_drop)
-
-    transformer = build_transformer(predict_pipeline_params.feature_params)
-    transformer.fit(train_df.drop(predict_pipeline_params.feature_params.target_col, axis=1))
-    test_features = transformer.transform(df)
 
     logger.info(f'load model from {os.path.join(CUR_DIR, predict_pipeline_params.model_path)}')
     with open(os.path.join(CUR_DIR, predict_pipeline_params.model_path), 'rb') as fin:
         model = pickle.load(fin)
 
+    logger.info(f'load transformer from {os.path.join(CUR_DIR, predict_pipeline_params.transformer_path)}')
+    with open(os.path.join(CUR_DIR, predict_pipeline_params.transformer_path), 'rb') as fin:
+        transformer = pickle.load(fin)
+
+    test_features = transformer.transform(df)
     predictions, _ = predict_model(model, test_features)
 
     with open(os.path.join(CUR_DIR, predict_pipeline_params.predictions_path), 'w') as prediction_file:
