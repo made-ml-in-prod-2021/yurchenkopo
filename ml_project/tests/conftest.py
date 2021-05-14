@@ -62,3 +62,9 @@ def numerical_features() -> List[str]:
 @pytest.fixture(scope='session')
 def features_to_drop() -> List[str]:
     return None
+
+
+@pytest.fixture(scope='session')
+def columns() -> List[str]:
+    return ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach',
+            'exang', 'oldpeak', 'slope', 'ca', 'thal']

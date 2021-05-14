@@ -66,3 +66,9 @@ def serialize_transformer(transformer: ColumnTransformer, output: str) -> str:
     with open(output, 'wb') as f:
         pickle.dump(transformer, f)
     return output
+
+
+def load_object(path: str):
+    with open(path, 'rb') as fin:
+        obj = pickle.load(fin)
+    return obj

@@ -2,14 +2,13 @@ import json
 import logging
 
 import os
-import pickle
 
 from omegaconf import DictConfig
 import hydra
 
 from src.data import read_data
 from src.features import drop_features
-from src.models import predict_model
+from src.models import predict_model, load_object
 from marshmallow_dataclass import class_schema
 from src.enities.predict_pipeline_params import PredictPipelineParams
 
@@ -29,12 +28,9 @@ def predict_pipeline(predict_pipeline_params: DictConfig):
     df = drop_features(df, predict_pipeline_params.feature_params.features_to_drop)
 
     logger.info(f'load model from {os.path.join(CUR_DIR, predict_pipeline_params.model_path)}')
-    with open(os.path.join(CUR_DIR, predict_pipeline_params.model_path), 'rb') as fin:
-        model = pickle.load(fin)
-
+    model = load_object(os.path.join(CUR_DIR, predict_pipeline_params.model_path))
     logger.info(f'load transformer from {os.path.join(CUR_DIR, predict_pipeline_params.transformer_path)}')
-    with open(os.path.join(CUR_DIR, predict_pipeline_params.transformer_path), 'rb') as fin:
-        transformer = pickle.load(fin)
+    transformer = load_object(os.path.join(CUR_DIR, predict_pipeline_params.transformer_path))
 
     test_features = transformer.transform(df)
     predictions, _ = predict_model(model, test_features)
