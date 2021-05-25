@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.compose import ColumnTransformer
 from sklearn.metrics import accuracy_score, f1_score, roc_curve, auc
 
 from src.enities.train_params import TrainingParams
@@ -56,6 +57,18 @@ def evaluate_model(predictions: np.ndarray, pred_probas: np.ndarray, target: pd.
 
 
 def serialize_model(model: SklearnClassifierModel, output: str) -> str:
-    with open(output, "wb") as f:
+    with open(output, 'wb') as f:
         pickle.dump(model, f)
     return output
+
+
+def serialize_transformer(transformer: ColumnTransformer, output: str) -> str:
+    with open(output, 'wb') as f:
+        pickle.dump(transformer, f)
+    return output
+
+
+def load_object(path: str):
+    with open(path, 'rb') as fin:
+        obj = pickle.load(fin)
+    return obj

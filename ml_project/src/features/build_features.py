@@ -17,7 +17,7 @@ def build_categorical_pipeline() -> Pipeline:
     categorical_pipeline = Pipeline(
         [
             ('impute', SimpleImputer(missing_values=np.nan, strategy='most_frequent')),
-            ('int_to_obj', FunctionTransformer(lambda x: x.astype(object), validate=True)),
+            # ('int_to_obj', FunctionTransformer(lambda x: x.astype(object), validate=True)),
             ('ohe', OneHotEncoder()),
         ]
     )
