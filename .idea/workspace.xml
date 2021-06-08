@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8753b69-ca7a-4853-91b9-1fc70e17ab47" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ml_project/README.md" afterPath="$PROJECT_DIR$/ml_project/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ml_project/requirements.txt" afterPath="$PROJECT_DIR$/ml_project/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/airflow_ml_dags/.gitignore" afterPath="$PROJECT_DIR$/airflow_ml_dags/.gitignore" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dag_train_validate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dag_train_validate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/airflow_ml_dags/dags/dag_train_validate.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-91">
@@ -39,6 +38,16 @@
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/airflow_ml_dags/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="438">
+              <caret line="99" column="2" lean-forward="false" selection-start-line="99" selection-start-column="2" selection-end-line="99" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,12 +132,12 @@
         <option value="$PROJECT_DIR$/airflow_ml_dags/dags/deg_generate_data.py" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/docker-compose.yml" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/dags/dag_predict.py" />
-        <option value="$PROJECT_DIR$/airflow_ml_dags/.gitignore" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/tests/test_dags.py" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/dags/dag_train_validate.py" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/tests/test_dag_train_validate.py" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/tests/test_dag_predict.py" />
         <option value="$PROJECT_DIR$/airflow_ml_dags/README.md" />
+        <option value="$PROJECT_DIR$/airflow_ml_dags/.gitignore" />
       </list>
     </option>
   </component>
@@ -212,24 +221,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="airflow_ml_dags" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yurchenkopo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yurchenkopo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="airflow_ml_dags" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -905,14 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/airflow_ml_dags/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="93" column="6" lean-forward="true" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/airflow_ml_dags/tests/test_dag_generate_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -981,6 +964,14 @@
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airflow_ml_dags/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="99" column="2" lean-forward="false" selection-start-line="99" selection-start-column="2" selection-end-line="99" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
