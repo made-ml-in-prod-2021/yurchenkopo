@@ -23,8 +23,12 @@ To run online inference service app:
 docker pull yurchenkopo/ml_project_app:v1
 docker run -p 8000:8000 yurchenkopo/ml_project_app:v1
 ~~~
+and to try it out use:
+~~~
+python online_inference/make_request.py
+~~~
 
-Test:
+Tests:
 ~~~
 pytest tests/
 ~~~
