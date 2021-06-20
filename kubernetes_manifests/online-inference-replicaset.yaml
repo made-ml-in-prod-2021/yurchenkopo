@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: fastapi-ml-replicas
+  labels:
+    app: fastapi-ml
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi-ml
+  template:
+    metadata:
+      name: fastapi-ml
+      labels:
+        app: fastapi-ml
+    spec:
+      containers:
+        - image: yurchenkopo/ml_project_app:v2
+          name: fastapi-ml
+          ports:
+            - containerPort: 8000

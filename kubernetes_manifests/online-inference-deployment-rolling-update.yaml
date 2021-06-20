@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-ml
+  labels:
+    app: fastapi-ml
+spec:
+  replicas: 8
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 8
+  selector:
+    matchLabels:
+      app: fastapi-ml
+  template:
+    metadata:
+      name: fastapi-ml
+      labels:
+        app: fastapi-ml
+    spec:
+      containers:
+        - image: yurchenkopo/ml_project_app:v1
+          name: fastapi-ml
+          ports:
+            - containerPort: 8000
