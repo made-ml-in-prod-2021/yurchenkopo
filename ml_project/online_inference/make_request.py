@@ -11,7 +11,7 @@ if __name__ == '__main__':
         ]
         print(request_data)
         response = requests.get(
-            'http://0.0.0.0:8000/predict/',
+            'http://localhost:34855/predict/',
             json={'data': [request_data], 'features': request_features},
         )
         print(response.status_code)
